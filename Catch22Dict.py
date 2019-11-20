@@ -5,7 +5,7 @@ import os
 oFile = open("letterFreq.py", "w")
 countCode = 0
 countComment = 0
-letterFreqString = "import numpy as np\nimport sys\nimport pandas as pd\ndef load_letterFreq() :\n    data = {'data': array("
+letterFreqString = "import numpy as np\nimport sys\nimport pandas as pd\ndef load_letterFreq() :\n    return {'data': np.array(["
 oFile.write('%s' % (letterFreqString))
 
 keyboardDict = {'a': [0,0], 'b': [0,0], 'c': [0,0], 'd': [0,0], 'e': [0,0], 'f': [0,0], 'g': [0,0], 'h': [0,0],
@@ -92,7 +92,7 @@ for fileName in glob.glob("Code.md"):
         lineCount = lineCount + 1
         charCount = 0
         if size == sizeFinal :
-            oFile.write('])')
+            oFile.write(']])')
         else :
             oFile.write('], ')
     for key in keyboardDict.keys() :
@@ -102,7 +102,7 @@ for fileName in glob.glob("Code.md"):
 
 print(countCode)
 print(countComment)
-oFile.write('%s' % (", 'target': array(["))
+oFile.write('%s' % (", 'target': np.array([["))
 
 for i in range(0, countCode) :
     i += 1
@@ -115,4 +115,7 @@ for x in range(0, countComment) :
         oFile.write('%s' % ("1, "))
     x += 1
 
-oFile.write('%s' % ("]), 'target_names': array(['Code', 'Comment'], dtype='<U10'), 'DESCR': 'Letter Frequency Database\n====================\n\nNotes\n-----\nData Set Characteristics:\n    :Number of Instances: 1000 (500 in each of two classes)\n    :Number of Attributes: 77 numeric, predictive attributes and the class\n    :Attribute Information:\n        - 77 distinct Ascii charecters all letters are lowercase        - class:\n                - Code\n                - Comment\n    :Summary Statistics:\n\n   ============== ==== ==== ======= ===== ====================\n\n    :Missing Attribute Values: None\n    :Class Distribution: 50% for each of 2 classes.\n    :Creator: B.E. Grills\n    :Date: October, 2019\n\n This data set was built over the course of eight months with the help and advise of Dr. M.J. Decker.\nAll of the data was first verified by hand to ensure that we knew all data was accurate. The comments that were analyzed for this data set were pulled\nfrom 18 different projects written in C, C++, C#, and Java with the help of srcML.\nThe goal of this project is to develop a method to automate the process of detecting commented-out code.\n\n', 'feature_names': ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '_', '+', '=', '{', '[', '}', ']', '|', '\\', ':', ';', "'", '"', '<', ',', '>', '.', '?', '/', ' ', '~', '`', '\t', '\n', '\x0c', '\r', '\x08', '\x0b', '\x00', 'unk']}"))
+oFile.write('%s' % ("]]), 'target_names': np.array(['Code', 'Comment']), 'feature_names': np.array(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'exclamation', 'at', 'octothorpe', 'dollar', 'percent', 'carrot', 'ambersand', 'star', 'openPara', 'closePara', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'dash', 'underscore', 'plus', 'equals', 'openCurly', 'openBracket', 'closeCurly', 'closeBracket', 'pipe', 'backSlash', 'colon', 'semicolon', 'singleQuote', 'doubleQuote', 'lessThan', 'comma', 'greaterThan', 'period', 'questionMark', 'forwardSlash', 'space', 'Tilde', 'grave', 'tab', 'newLine', 'formFeed', 'return', 'backspace', 'verticleTab', 'NullByte', 'unk'])}"))
+
+
+# 'DESCR': array(['''Letter Frequency Database\n====================\n\nNotes\n-----\nData Set Characteristics:\n    :Number of Instances: 1000 (500 in each of two classes)\n    :Number of Attributes: 77 numeric, predictive attributes and the class\n    :Attribute Information:\n        - 77 distinct Ascii charecters all letters are lowercase        - class:\n                - Code\n                - Comment\n    :Summary Statistics:\n\n   ============== ==== ==== ======= ===== ====================\n\n    :Missing Attribute Values: None\n    :Class Distribution: 50% for each of 2 classes.\n    :Creator: B.E. Grills\n    :Date: October, 2019\n\n This data set was built over the course of eight months with the help and advise of Dr. M.J. Decker.\nAll of the data was first verified by hand to ensure that we knew all data was accurate. The comments that were analyzed for this data set were pulled\nfrom 18 different projects written in C, C++, C#, and Java with the help of srcML.\nThe goal of this project is to develop a method to automate the process of detecting commented-out code.\n\n''']),
