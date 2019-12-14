@@ -100,15 +100,15 @@ for fileName in glob.glob("Code.md"):
     inFile.close()
     inFileFinal.close()
 
-print(countCode)
 print(countComment)
+print(countCode)
 oFile.write('%s' % (", 'target': np.array(["))
 
-for i in range(0, countCode) :
+for i in range(0, countComment) :
     i += 1
     oFile.write('%s' % ("0, "))
 
-for x in range(0, countComment) :
+for x in range(0, countCode) :
     if x == 499 :
         oFile.write('%s' % ("1"))
     else :
