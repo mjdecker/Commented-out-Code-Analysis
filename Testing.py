@@ -34,23 +34,24 @@ print("\n-----------------------------------------------------------------\n")
 
 y = letterFreqData["target"]
 X = letterFreqData["data"]
-kf = KFold(n_splits=2, random_state=None, shuffle=True)
+kf = KFold(n_splits=5, random_state=None, shuffle=True)
 for train_index, test_index in kf.split(X) :
 	X_train_kfold, X_test_kfold = X[train_index], X[test_index]
 	y_train_kfold, y_test_kfold = y[train_index], y[test_index]
-dt_kfold = DecisionTreeClassifier(min_samples_split=20)
-dt_kfold = dt_kfold.fit(X_train_kfold, y_train_kfold)
+	dt_kfold = DecisionTreeClassifier(min_samples_split=20)
+	dt_kfold = dt_kfold.fit(X_train_kfold, y_train_kfold)
 
+
+
+	y_pred_kfold = dt_kfold.predict(X_test_kfold)
+
+	results_kfold = { "accuracy_kfold":  metrics.accuracy_score(y_test_kfold, y_pred_kfold),
+		    	"precision_kfold": metrics.precision_score(y_test_kfold, y_pred_kfold),
+ 		    	"recall_kfold":    metrics.recall_score(y_test_kfold, y_pred_kfold),
+ 		    	"F1_kfold":        metrics.f1_score(y_test_kfold, y_pred_kfold)
+		  	}
+
+	[print(key + ":", results_kfold[key]) for key in results_kfold]
 dot_data = export_graphviz(dt, feature_names=letterFreqData["feature_names"], out_file=None, filled=True, class_names=letterFreqData["target_names"])
 #graph = graphviz.Source(dot_data) 
 #graph.render("comments_decision_tree") 
-
-y_pred_kfold = dt_kfold.predict(X_test_kfold)
-
-results_kfold = { "accuracy_kfold":  metrics.accuracy_score(y_test_kfold, y_pred_kfold),
-		    "precision_kfold": metrics.precision_score(y_test_kfold, y_pred_kfold),
- 		    "recall_kfold":    metrics.recall_score(y_test_kfold, y_pred_kfold),
- 		    "F1_kfold":        metrics.f1_score(y_test_kfold, y_pred_kfold)
-		  }
-
-[print(key + ":", results_kfold[key]) for key in results_kfold]
